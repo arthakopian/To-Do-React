@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './Header';
+import ElementsList from './ElementsList'
+import { v4 as uuidv4 } from 'uuid'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+
+  constructor(props){
+    super(props)
+    this.state = {
+      list: []
+    }
+    this.addElements = this.addElements.bind(this)
+    this.removeElements = this.removeElements.bind(this)
+  }
+
+  addElements(value){
+    this.setState({
+      list: [...this.state.list, {value, key: uuidv4()}]
+    })
+  }
+  
+  removeElements(e){
+    e.stopPropagation()
+    const item = e.target.closest('div')
+    this.setState({
+      list: this.state.list.filter(el => el.key !== item.id)
+    })
+  }
+
+  render(){
+    return(
+    <>
+      <Header addElements = {this.addElements} />
+      <ElementsList list = {this.state.list} removeElements = {this.removeElements}/>
+    </>
+    )  
+  }
+
 }
 
 export default App;
