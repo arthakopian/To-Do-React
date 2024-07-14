@@ -3,20 +3,25 @@
   background: #191d58;
   padding: 30px 150px;
 }
-h1{
+
+h1 {
   color: #fff;
   margin: 0 0 10px;
 }
-.my-input{
+
+.my-input {
   display: flex;
+  margin: 0 0 10px;
 }
+
 .title {
   flex: 1 0 75%;
-  padding: 10px;   
+  padding: 10px;
   font-size: 16px;
   margin: 0;
   border: none;
 }
+
 .my-button {
   flex: 1 0 25%;
   padding: 10px 30px;
@@ -25,27 +30,32 @@ h1{
   cursor: pointer;
   border: none;
 }
-.my-button:hover{
+
+.my-button:hover {
   content: "";
   background: #b4aeae;
 }
-.new-element{
+
+.new-element {
   font-size: 20px;
   padding: 14px 0;
   cursor: pointer;
   position: relative;
 }
-.new-element:nth-child(even){
+
+.new-element:nth-child(even) {
   background: #e6e2e2;
 }
-.new-element:nth-child(odd){
+
+.new-element:nth-child(odd) {
   background: #cfcdcd;
 }
-.new-element:hover{
+
+.new-element:hover {
   background: #c7c4c4;
 }
 
-.cross{
+.cross {
   position: absolute;
   right: 0;
   top: 0;
@@ -53,16 +63,19 @@ h1{
   width: 50px;
   height: 100%;
 }
-.cross:hover{
+
+.cross:hover {
   background: #191d58;
   color: #FFF;
 }
-.action-done{
+
+.action-done {
   background: grey !important;
   color: #fff;
   text-decoration: line-through;
 }
-.action-done::before{
+
+.action-done::before {
   content: '✓';
   position: absolute;
   left: 0;
@@ -70,4 +83,54 @@ h1{
   align-content: center;
   width: 50px;
   height: 100%;
+}
+
+
+:root {
+  --accent: #007ECC;
+  --accent-2: #EC2F4B;
+  --text: #003f66;
+  --text-hover: var(--accent);
+  --text-active: #FFFFFF;
+  --border-width: 0.125em;
+}
+
+.toggle {
+  margin: 0 auto;
+  position: relative;
+  border-radius: 999em;
+  height: 2.75em;
+  width: 20em;
+  display: flex;
+  border: var(--border-width) solid var(--accent);
+  overflow: hidden;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  color: var(--text);
+  background-color: #FFFFFF;
+  font-weight: 500;
+}
+
+.toggle-input:checked+.toggle-label {
+  background-color: var(--accent);
+  color: var(--text-active);
+}
+
+.toggle-label:hover {
+  color: var(--text-hover);
+}
+
+.toggle-label:not(:first-of-type) {
+  border-left: var(--border-width) solid var(--accent);
 }
