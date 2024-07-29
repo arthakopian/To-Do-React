@@ -84,8 +84,7 @@ function App() {
   }
 
   const removeElements = (e) => {
-    e.stopPropagation()
-    const item = e.target.closest('div')
+    const item = e.target.closest('li')
     setList(list.filter(el => el.key !== item.id))
   }
 

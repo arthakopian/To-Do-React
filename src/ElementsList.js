@@ -1,5 +1,7 @@
 import React from "react"
-import RenderElement from "./RenderElement"
+// import RenderElement from "./RenderElement"
+import { IconButton, List, ListItem, ListItemText } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
 // class ElementsList extends React.Component {
 //   render() {
@@ -55,20 +57,40 @@ function ElementsList(props) {
       break;
   }
 
+  // return (
+  //   <>
+  //     {filteredList.map(item => (
+  //       <RenderElement
+  //         handleRemove={(e) => removeElements(e)}
+  //         key={item.key}
+  //         id={item.key}
+  //         value={item.value}
+  //         done={item.done}
+  //         toggleDone={() => toggleDone(item.key)}
+  //       />
+  //     ))}
+  //   </>
+  // )
   return (
-    <>
+    <List>
       {filteredList.map(item => (
-        <RenderElement
-          handleRemove={(e) => removeElements(e)}
-          key={item.key}
+        <ListItem
+          sx={{ width: 1, textAlign: 'center' }}
+          onClick={() => toggleDone(item.key)}
+          className={item.done ? "new-element action-done" : "new-element"}
           id={item.key}
-          value={item.value}
-          done={item.done}
-          toggleDone={() => toggleDone(item.key)}
-        />
+          key={item.key}
+          secondaryAction={
+            <IconButton onClick={(e) => removeElements(e)} aria-label="delete">
+              <Delete />
+            </IconButton>
+          }
+        >
+          <ListItemText primary={item.value} />
+        </ListItem>
       ))}
-    </>
-  )
+    </List>
+  );
 }
 
 export default ElementsList
